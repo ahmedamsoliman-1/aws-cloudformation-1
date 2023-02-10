@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Build two new EC2 + SG.
+
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: "AllowEc2Traffic_New"
+      GroupDescription: "Enable SSH access and HTTP access on the inbound port for EC2"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: InstanceSecurityGroup
+
+  ahmedalimsolimanEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: ahm
+      ImageId: ami-0aa7d40eeae50c9a9
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: Name
+          Value: ahmedalimsolimanEC2
+
+  ahmedalimsolimanEC22:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: ahm
+      ImageId: ami-0aa7d40eeae50c9a9
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: Name
+          Value: ahmedalimsolimanEC2
+
+Outputs:
+  outputahmedalimsolimanEC2:
+    Description: A reference to the created security group
+    Value: !Ref InstanceSecurityGroup
+  outputahmedalimsoliman1:
+    Description: A reference to the created EC2 Instance
+    Value: !Ref ahmedalimsolimanEC2
+  outputahmedalimsolimanEC22:
+    Description: A reference to the created EC2 Instance
+    Value: !Ref ahmedalimsolimanEC22

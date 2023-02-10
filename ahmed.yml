@@ -89,7 +89,7 @@ Resources:
   ahmedalimsoliman1:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: ahmed
+      KeyName: ahmed_ali_moh_soliman
       ImageId: ami-0d90042973e519abe
       SubnetId: !Ref PublicSubnet1
       InstanceType: t2.micro
@@ -101,7 +101,7 @@ Resources:
   ahmedalimsoliman2:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: ahmed
+      KeyName: ahmed_ali_moh_soliman
       ImageId: ami-0d90042973e519abe
       InstanceType: t2.micro
       SubnetId: !Ref PublicSubnet2
